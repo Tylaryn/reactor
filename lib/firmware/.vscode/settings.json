@@ -11,6 +11,10 @@
         "*.h": "c",
         "*.c": "c",
         "*.cpp": "cpp",
-        "*.hpp": "cpp"
+        "*.hpp": "cpp",
+        "system_error": "c",
+        "array": "c",
+        "initializer_list": "c",
+        "utility": "c"
     }
 }

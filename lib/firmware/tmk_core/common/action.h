@@ -46,6 +46,12 @@ typedef struct {
 #endif
 } keyrecord_t;
 
+// #define CUSTOM_MODIFIED_VALUES_ENABLE
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
+keyrecord_t* get_current_record(void);
+void set_current_record(keyrecord_t* new_record);
+#endif
+
 /* Execute action per keyevent */
 void action_exec(keyevent_t event);
 

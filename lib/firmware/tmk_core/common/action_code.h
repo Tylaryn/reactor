@@ -243,7 +243,7 @@ enum usage_pages {
 
 
 
-/* 
+/*
  * Layer Actions
  */
 enum layer_param_on {

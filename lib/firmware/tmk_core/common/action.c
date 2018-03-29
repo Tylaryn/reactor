@@ -44,6 +44,13 @@ int retro_tapping_counter = 0;
 #include <fauxclicky.h>
 #endif
 
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
+// #include <print.h>
+keyrecord_t *cur_record;
+keyrecord_t* get_current_record(void) { return cur_record; }
+void set_current_record(keyrecord_t* new_record) { /*print("Setting new record.\n");*/ cur_record = new_record; }
+#endif
+
 void action_exec(keyevent_t event)
 {
     if (!IS_NOEVENT(event)) {
@@ -71,6 +78,9 @@ void action_exec(keyevent_t event)
 #endif
 
     keyrecord_t record = { .event = event };
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
+    set_current_record(&record);
+#endif
 
 #if (defined(ONESHOT_TIMEOUT) && (ONESHOT_TIMEOUT > 0))
     if (has_oneshot_layer_timed_out()) {

@@ -117,6 +117,36 @@ static inline bool has_ghost_in_row(uint8_t row, matrix_row_t rowdata)
 
 #endif
 
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
+struct key_queue key_q = {.c_max = 0, .c = -1};
+struct key_queue* get_key_q(void) { return &key_q; }
+
+bool push_key_to_q(keyevent_describer_t new_key) {
+  if(key_q.c_max >= CUSTOM_MODIFIERS_KEY_QUEUE) {
+    return false;
+  }
+  key_q.q[key_q.c_max++] = new_key;
+  return true;
+}
+
+uint8_t execute_key_from_q(void/* matrix_row_t* matrix_prev */) {
+  for(key_q.c = 0; key_q.c < key_q.c_max; key_q.c++) {
+    // print("Executing additional key.\n");
+    keyevent_describer_t* key = &(key_q.q[key_q.c]);
+    action_exec((keyevent_t) {
+      .key = {.row = key->row, .col = key->col},
+      .pressed = key->p,
+      .time = (timer_read() | 1)
+    });
+    // matrix_prev[key_q.q[key_q.c].key.row] ^= ((matrix_row_t)1<<key_q.q[key_q.c].key.col);
+  }
+  uint8_t keys_executed = key_q.c;
+  key_q.c = -1;
+  key_q.c_max = 0;
+  return keys_executed;
+}
+#endif
+
 __attribute__ ((weak))
 void matrix_setup(void) {
 }
@@ -214,7 +244,16 @@ void keyboard_task(void)
                         });
                         // record a processed key
                         matrix_prev[r] ^= ((matrix_row_t)1<<c);
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
 #ifdef QMK_KEYS_PER_SCAN
+                        uint8_t additional_keys_executed =
+#endif
+                        execute_key_from_q();
+#endif
+#ifdef QMK_KEYS_PER_SCAN
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
+                        keys_processed += additional_keys_executed;
+#endif
                         // only jump out if we have processed "enough" keys.
                         if (++keys_processed >= QMK_KEYS_PER_SCAN)
 #endif

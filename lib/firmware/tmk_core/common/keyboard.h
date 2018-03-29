@@ -38,9 +38,30 @@ typedef struct {
     bool     pressed;
     uint16_t time;
 } keyevent_t;
-
 /* equivalent test of keypos_t */
 #define KEYEQ(keya, keyb)       ((keya).row == (keyb).row && (keya).col == (keyb).col)
+
+#ifdef CUSTOM_MODIFIED_VALUES_ENABLE
+#ifndef CUSTOM_MODIFIERS_KEY_QUEUE
+#define CUSTOM_MODIFIERS_KEY_QUEUE 2
+#endif
+typedef struct {
+  uint8_t row;
+  uint8_t col;
+  bool p :1;
+  uint16_t kc;
+} keyevent_describer_t;
+
+struct key_queue {
+  uint8_t c_max :2;
+  int8_t c      :3;
+  keyevent_describer_t q[CUSTOM_MODIFIERS_KEY_QUEUE];
+};
+
+struct key_queue* get_key_q(void);
+bool push_key_to_q(keyevent_describer_t new_key);
+uint8_t execute_key_from_q(void/* matrix_row_t* matrix_prev */);
+#endif
 
 /* Rules for No Event:
  * 1) (time == 0) to handle (keyevent_t){} as empty event
