@@ -138,7 +138,7 @@ void layer_debug(void)
 #endif
 
 #if !defined(NO_ACTION_LAYER) && defined(PREVENT_STUCK_MODIFIERS)
-uint8_t source_layers_cache[(MATRIX_ROWS * MATRIX_COLS + 7) / 8][MAX_LAYER_BITS] = {{0}};
+uint8_t source_layers_cache[(MATRIX_ROWS * MATRIX_COLS + 7) / 8][MAX_LAYER_BITS] = {{0}}; // ErgodoxEZ --> [14*6+7=11][5]
 
 void update_source_layers_cache(keypos_t key, uint8_t layer)
 {
@@ -200,7 +200,6 @@ action_t store_or_get_action(bool pressed, keypos_t key)
 #endif
 }
 
-
 int8_t layer_switch_get_layer(keypos_t key)
 {
 #ifndef NO_ACTION_LAYER
@@ -211,6 +210,9 @@ int8_t layer_switch_get_layer(keypos_t key)
     /* check top layer first */
     for (int8_t i = 31; i >= 0; i--) {
         if (layers & (1UL<<i)) {
+            if(i == 2) print("Reading layer 2...\n");
+            else if(i == 1) print("Reading layer 1...\n");
+            else if(i == 0) print("Reading layer 0...\n");
             action = action_for_key(i, key);
             if (action.code != ACTION_TRANSPARENT) {
                 return i;

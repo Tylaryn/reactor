@@ -204,6 +204,9 @@ bool process_record_quantum(keyrecord_t *record) {
       } else {
         layer = read_source_layers_cache(key);
       }
+      if(layer == 2) print("process_record_quantum: Working with layer 2.\n");
+      else if(layer == 1) print("process_record_quantum: Working with layer 1.\n");
+      else if(layer == 0) print("process_record_quantum: Working with layer 0.\n");
       keycode = keymap_key_to_keycode(layer, key);
     } else
   #endif

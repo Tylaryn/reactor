@@ -48,7 +48,7 @@ int retro_tapping_counter = 0;
 // #include <print.h>
 keyrecord_t *cur_record;
 keyrecord_t* get_current_record(void) { return cur_record; }
-void set_current_record(keyrecord_t* new_record) { /*print("Setting new record.\n");*/ cur_record = new_record; }
+void set_current_record(keyrecord_t* new_record) { cur_record = new_record; }
 #endif
 
 void action_exec(keyevent_t event)

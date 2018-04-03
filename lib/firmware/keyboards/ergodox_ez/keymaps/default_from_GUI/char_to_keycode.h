@@ -42,6 +42,15 @@ uint16_t get_keycode_from_codepoint(const uint32_t codepoint) {
   return KC_NO;
 }
 
+uint16_t translate_keycode(uint16_t keycode) {
+  if(keycode < QK_UNICODE) return keycode;
+  uint16_t keycode_from_cp = get_keycode_from_codepoint(keycode & 0x7FFF);
+  if(keycode_from_cp == KC_NO) {
+    return keycode;
+  }
+  return keycode_from_cp;
+}
+
 uint8_t send_utf8_string(uint32_t codepoint) {
   uint32_t keycode = get_keycode_from_codepoint(codepoint);
   register_code(keycode);

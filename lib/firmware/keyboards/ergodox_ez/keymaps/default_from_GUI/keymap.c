@@ -76,21 +76,39 @@ const uint16_t PROGMEM keymaps[]/*[LOADED_C2K_TABLES]*/[MATRIX_ROWS][MATRIX_COLS
           KC_TRNS,    KC_HASH,     KC_DLR,    KC_LPRN,    KC_RPRN,   KC_GRAVE,
           KC_TRNS,    KC_PERC,    KC_CIRC,KC_LBRACKET,KC_RBRACKET,    KC_TILD,    KC_TRNS,
           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-                                                                      RGB_MOD,    KC_TRNS,
+                                                                      KC_TRNS,    KC_TRNS,
                                                                                   KC_TRNS,
-                                                          RGB_VAD,    RGB_VAI,    KC_TRNS,
+                                                          KC_TRNS,    KC_TRNS,    KC_TRNS,
 
           KC_TRNS,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,
           KC_TRNS,      KC_UP,       KC_7,       KC_8,    KC_KP_9,     KC_ASTR,     KC_F12,
                       KC_DOWN,       KC_4,       KC_5,       KC_6,     KC_PLUS,    KC_TRNS,
           KC_TRNS,    KC_AMPR,       KC_1,       KC_2,       KC_3,   KC_BSLASH,    KC_TRNS,
                                   KC_TRNS,     KC_DOT,       KC_0,    KC_EQUAL,    KC_TRNS,
-          RGB_TOG,    RGB_SLD,
+          KC_TRNS,    KC_TRNS,
           KC_TRNS,
-          KC_TRNS,    RGB_HUD,    RGB_HUI
+          KC_TRNS,    KC_TRNS,    KC_TRNS
   ),
 
-  [2] = KEYMAP(M(TO_FRENCH),M(TO_ENGLISH),M(CUR_STATE),KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_MS_UP,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_MS_LEFT,KC_MS_DOWN,KC_MS_RIGHT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_MS_BTN1,KC_MS_BTN2,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_MEDIA_PLAY_PAUSE,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT,KC_TRANSPARENT,KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_WWW_BACK),
+  [2] = KEYMAP(
+     KC_TRNS,M(TO_ENGLISH),M(CUR_STATE), KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,
+          M(TO_FRENCH),    KC_TRNS,    KC_TRNS,   KC_MS_UP,    KC_TRNS,     KC_TRNS,     KC_TRNS,
+          KC_TRNS,    KC_TRNS, KC_MS_LEFT, KC_MS_DOWN,KC_MS_RIGHT,     KC_TRNS,
+          KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,
+          KC_TRNS,    KC_TRNS,    KC_TRNS, KC_MS_BTN1, KC_MS_BTN2,
+                                                                       KC_TRNS,     KC_TRNS,
+                                                                                    KC_TRNS,
+                                                          KC_TRNS,     KC_TRNS,     KC_TRNS,
+
+          KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,
+          KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_WWW_BACK,
+                      KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,KC_MEDIA_PLAY_PAUSE,
+          KC_TRNS,    KC_TRNS,    KC_TRNS,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_TRNS,KC_TRNS,
+                          KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,KC_TRNS,  KC_TRNS,
+          KC_TRNS,    KC_TRNS,
+          KC_TRNS,
+          KC_TRNS,    KC_TRNS,    KC_TRNS
+  ),
 
   /*
   [LAYER] = KEYMAP(
@@ -118,6 +136,10 @@ const uint16_t PROGMEM keymaps[]/*[LOADED_C2K_TABLES]*/[MATRIX_ROWS][MATRIX_COLS
 const uint16_t PROGMEM fn_actions[] = {
   [1] = ACTION_LAYER_TAP_TOGGLE(1)
 };
+
+// uint16_t keymap_key_to_keycode(uint8_t layer, keypos_t key) {
+//   return translate_keycode(pgm_read_word(&keymaps[(layer)][(key.row)][(key.col)]));
+// };
 
 // typedef struct {
 //   uint16_t kc;

@@ -242,6 +242,7 @@ void keyboard_task(void)
                             .pressed = (matrix_row & ((matrix_row_t)1<<c)),
                             .time = (timer_read() | 1) /* time should not be 0 */
                         });
+                        print("-------------------------------------\n");
                         // record a processed key
                         matrix_prev[r] ^= ((matrix_row_t)1<<c);
 #ifdef CUSTOM_MODIFIED_VALUES_ENABLE
@@ -269,7 +270,7 @@ void keyboard_task(void)
     // we can get here with some keys processed now.
     if (!keys_processed)
 #endif
-    action_exec(TICK);
+    // action_exec(TICK);
 
 MATRIX_LOOP_END:
 

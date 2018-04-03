@@ -281,6 +281,7 @@ bool process_tapping(keyrecord_t *keyp)
             debug_tapping_key();
             return true;
         } else {
+            print("Not tapping state and not tap key.\n");
             process_record(keyp);
             return true;
         }
