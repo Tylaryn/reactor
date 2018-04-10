@@ -48,8 +48,8 @@ typedef struct {
 typedef struct {
   uint8_t row;
   uint8_t col;
-  bool p :1;
-  uint16_t kc;
+  bool    p     :1;
+  uint8_t kcid  :2;
 } keyevent_describer_t;
 
 struct key_queue {

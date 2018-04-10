@@ -8,13 +8,14 @@
 #define LOAD_C2K_FR_FR_AS 1
 #include "char_to_keycode.h"
 
-#include "custom_modified_values.h"
+// #include "custom_modified_values.h"
 
 #define SEND_STRING_CUSTOM(str) utf8_walk_characters(str, send_utf8_string)
 
 
 
 #define __________ KC_TRANSPARENT
+#define XXXXXXXXXX KC_NO
 #define OS_LNX 0
 #define OS_WIN 1
 #define OS_OSX 2
@@ -48,7 +49,46 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[]/*[LOADED_C2K_TABLES]*/[MATRIX_ROWS][MATRIX_COLS] = {
+  [_COLEMAK] = KEYMAP(
+  TG(_NAVIGAT),   UC(0x0031),   UC(0x0032),   UC(0x0033),   UC(0x0034),   UC(0x0035),   XXXXXXXXXX,
+       KC_LALT,   UC(0x0071),   UC(0x0077),   UC(0x0066),   UC(0x0070),   UC(0x0067),   XXXXXXXXXX,
+  MO(_SYMBOLS),   UC(0x0061),   UC(0x0072),   UC(0x0073),   UC(0x0074),   UC(0x0044),
+     KC_LSHIFT,   UC(0x007A),   UC(0x0078),   UC(0x0063),   UC(0x0076),   UC(0x0062), ALL_T(KC_NO),
+     KC_ESCAPE, MO(_NAVIGAT),      KC_RALT, MO(_SYMBOLS),     KC_LCTRL,
+                                                                          XXXXXXXXXX,   XXXXXXXXXX,
+                                                                                         KC_PGDOWN,
+                                                            UC(0x0020),   UC(0x0009),       KC_END,
 
+    XXXXXXXXXX,   UC(0x0036),   UC(0x0037),   UC(0x0038),   UC(0x0039),   UC(0x0030), TG(_NAVIGAT),
+    XXXXXXXXXX,   UC(0x006A),   UC(0x006C),   UC(0x0075),   UC(0x0079),   UC(0x002E),     KC_RCTRL,
+                  UC(0x0068),   UC(0x006E),   UC(0x0065),   UC(0x0069),   UC(0x006F),   UC(0x0027),
+  MEH_T(KC_NO),   UC(0x006B),   UC(0x006D),   UC(0x002D),   UC(0x003D),   UC(0x003B),    KC_RSHIFT,
+                                   KC_LEFT,     KC_RIGHT,   UC(0x003C),   UC(0x005C),      KC_RALT,
+    XXXXXXXXXX,   XXXXXXXXXX,
+       KC_PGUP,
+       KC_HOME,   UC(0x000A),   KC_BSPACE
+  ),
+
+  [_SYMBOLS] = KEYMAP(
+    __________,        KC_F1,        KC_F2,        KC_F3,        KC_F4,        KC_F5,        KC_F6,
+    __________,   UC(0x0023),   UC(0x0026),   UC(0x003F),   UC(0x007B),   UC(0x007D),   __________,
+    __________,   UC(0x007E),   UC(0x0024),   UC(0x0021),   UC(0x0028),   UC(0x0029),
+    __________,   UC(0x005E),   UC(0x007C),   UC(0x0040),   UC(0x005B),   UC(0x005D),   __________,
+    __________,   __________,   __________,   __________,   __________,
+                                                                          __________,   __________,
+                                                                                        __________,
+                                                            __________,   __________,   __________,
+
+         KC_F7,        KC_F8,        KC_F9,       KC_F10,       KC_F11,       KC_F12,   __________,
+    __________,   UC(0x002D),      KC_KP_7,      KC_KP_8,      KC_KP_9,   UC(0x002F),   __________,
+                  UC(0x002B),      KC_KP_4,      KC_KP_5,      KC_KP_6,   UC(0x002A),   __________,
+    __________,   __________,      KC_KP_1,      KC_KP_2,      KC_KP_3,      KC_KP_0,   __________,
+                                     KC_UP,      KC_DOWN,   __________,   __________,   __________,
+    __________,   __________,
+    __________,
+    __________,   __________,   __________
+  ),
+  /*
   [_COLEMAK] = KEYMAP(
        UC(0x3D),     UC(0x31),   UC(0x32),   UC(0x33),   UC(0x34),   UC(0x35),   KC_LEFT,
       KC_DELETE,     UC(0x71),   UC(0x77),   UC(0x65),   UC(0x72),   UC(0x74),     TG(1),
@@ -91,8 +131,8 @@ const uint16_t PROGMEM keymaps[]/*[LOADED_C2K_TABLES]*/[MATRIX_ROWS][MATRIX_COLS
   ),
 
   [2] = KEYMAP(
-     KC_TRNS,M(TO_ENGLISH),M(CUR_STATE), KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,
-          M(TO_FRENCH),    KC_TRNS,    KC_TRNS,   KC_MS_UP,    KC_TRNS,     KC_TRNS,     KC_TRNS,
+     M(TO_FRENCH),M(TO_ENGLISH),M(CUR_STATE), KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,
+          KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_MS_UP,    KC_TRNS,     KC_TRNS,     KC_TRNS,
           KC_TRNS,    KC_TRNS, KC_MS_LEFT, KC_MS_DOWN,KC_MS_RIGHT,     KC_TRNS,
           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,
           KC_TRNS,    KC_TRNS,    KC_TRNS, KC_MS_BTN1, KC_MS_BTN2,
@@ -108,27 +148,27 @@ const uint16_t PROGMEM keymaps[]/*[LOADED_C2K_TABLES]*/[MATRIX_ROWS][MATRIX_COLS
           KC_TRNS,    KC_TRNS,
           KC_TRNS,
           KC_TRNS,    KC_TRNS,    KC_TRNS
-  ),
+  ), */
 
   /*
   [LAYER] = KEYMAP(
-    __________, __________, __________, __________, __________, __________, __________,
-    __________, __________, __________, __________, __________, __________, __________,
-    __________, __________, __________, __________, __________, __________,
-    __________, __________, __________, __________, __________, __________, __________,
-    __________, __________, __________, __________, __________,
-                                                                __________, __________,
-                                                                            __________,
-                                                    __________, __________, __________,
+    __________,   __________,   __________,   __________,   __________,   __________,   __________,
+    __________,   __________,   __________,   __________,   __________,   __________,   __________,
+    __________,   __________,   __________,   __________,   __________,   __________,
+    __________,   __________,   __________,   __________,   __________,   __________,   __________,
+    __________,   __________,   __________,   __________,   __________,
+                                                                          __________,   __________,
+                                                                                        __________,
+                                                            __________,   __________,   __________,
 
-    __________, __________, __________, __________, __________, __________, __________,
-    __________, __________, __________, __________, __________, __________, __________,
-                __________, __________, __________, __________, __________, __________,
-    __________, __________, __________, __________, __________, __________, __________,
-                            __________, __________, __________, __________, __________,
-    __________, __________,
+    __________,   __________,   __________,   __________,   __________,   __________,   __________,
+    __________,   __________,   __________,   __________,   __________,   __________,   __________,
+                  __________,   __________,   __________,   __________,   __________,   __________,
+    __________,   __________,   __________,   __________,   __________,   __________,   __________,
+                                __________,   __________,   __________,   __________,   __________,
+    __________,   __________,
     __________,
-    __________, __________, __________
+    __________,   __________,   __________
   ),
   */
 };

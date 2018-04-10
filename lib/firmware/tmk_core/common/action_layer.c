@@ -210,9 +210,6 @@ int8_t layer_switch_get_layer(keypos_t key)
     /* check top layer first */
     for (int8_t i = 31; i >= 0; i--) {
         if (layers & (1UL<<i)) {
-            if(i == 2) print("Reading layer 2...\n");
-            else if(i == 1) print("Reading layer 1...\n");
-            else if(i == 0) print("Reading layer 0...\n");
             action = action_for_key(i, key);
             if (action.code != ACTION_TRANSPARENT) {
                 return i;
